@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>learn.maven.inherit</groupId>
+    <artifactId>base</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  
+  <artifactId>module4-web</artifactId>
+  <packaging>war</packaging>
+  <name>module4-web Maven Webapp</name>
+  
+  <dependencies>
+  	<!-- Dependency Mediation by the first rule: Nearest path first
+  		 There is also a same artifact commons-lang with version 2.6
+  		 defined in module3-web/pom.xml
+  	 -->
+  	<dependency>
+		<groupId>commons-lang</groupId>
+		<artifactId>commons-lang</artifactId>
+		<version>2.5</version>
+	</dependency>
+    <dependency>
+    	<groupId>learn.maven.inherit</groupId>
+	    <artifactId>module3-web</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
+	    <classifier>client</classifier>
+	    <!-- <exclusions>
+	    	<exclusion>
+	    		<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+	    	</exclusion>
+	    </exclusions> -->
+    </dependency>
+    <!-- Extends dependency from parent POM dependencyManagement -->
+    <dependency>
+		<groupId>com.h2database</groupId>
+		<artifactId>h2</artifactId>
+	</dependency>
+  </dependencies>
+  
+  <build>
+    <finalName>module4-web</finalName>
+  </build>
+</project>

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>learn.maven.inherit</groupId>
+    <artifactId>base</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  
+  <artifactId>module3-web</artifactId>
+  <packaging>war</packaging>
+  <name>module3-web Maven Webapp</name>
+  
+  <dependencies>
+  	<!-- Add this artifact to test the Dependency Mediation rule in module4-web -->
+  	<dependency>
+		<groupId>commons-lang</groupId>
+		<artifactId>commons-lang</artifactId>
+		<version>2.6</version>
+	</dependency>
+	<!-- Add this artifact to test the dependency transmission -->
+	<dependency>
+		<groupId>commons-validator</groupId>
+		<artifactId>commons-validator</artifactId>
+		<version>1.4.0</version>
+	</dependency>
+  	<!-- Overwrite the dependency of parent POM -->
+ 	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>3.0.0.RELEASE</version>
+	</dependency>
+	<!-- Extends managed dependency from parent POM dependencyManagement -->	
+	<dependency>
+		<groupId>jfree</groupId>
+		<artifactId>jfreechart</artifactId>
+	</dependency>
+	<!-- Overwrite the managed dependency defined in parent POM dependencyManagement
+		There will be a warning.
+	-->
+	<dependency>
+		<groupId>com.h2database</groupId>
+		<artifactId>h2</artifactId>
+		<version>1.3.170</version>
+	</dependency>
+  </dependencies>
+  
+  <build>
+    <!-- <finalName>module3-web</finalName> -->
+    <plugins>
+    	<!-- Build another client jar file with classifier='client' -->
+    	<plugin>
+    		<groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-jar-plugin</artifactId>
+	        <version>2.4</version>
+	        <executions>
+		        <execution>
+		          <id>client-jar</id>
+		          <phase>package</phase>
+		          <goals>
+		            <goal>jar</goal>
+		          </goals>
+			      <configuration>
+		              <classifier>client</classifier>
+		              <includes>
+		                <include>**/client/*</include>
+		              </includes>
+	            </configuration>
+		        </execution>
+		      </executions>
+    	</plugin>
+    </plugins>
+  </build>
+</project>
