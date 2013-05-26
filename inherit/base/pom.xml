@@ -57,11 +57,20 @@
   	</plugins>
   </build>
   
+  <distributionManagement>
+  	<snapshotRepository>
+  		<id>nexus-snapshots</id>
+  		<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+  	</snapshotRepository>
+  </distributionManagement>
+  
   <modules>
   	<module>module1</module>
     <module>module2</module>
     <module>module3-web</module>
     <module>module4-web</module>
     <module>src/module5</module>
+    <module>module6-core</module>
+    <module>module6-web</module>
   </modules>
 </project>
